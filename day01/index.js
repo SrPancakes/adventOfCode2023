@@ -1,5 +1,14 @@
 import fs from 'fs';
 
+function calibrate(file, calibrationValue) {
+  if (partOne(file) == calibrationValue) {
+    console.log('Calibration: COMPLETED');
+    return true;
+  } else {
+    console.log('Calibration: FAILED');
+    return false;
+  }
+}
 
 function partOne(file) {
   const lines = fs.readFileSync(file, 'utf8'
@@ -15,4 +24,10 @@ function partOne(file) {
   return values.reduce((a, b) => a + b);
 }
 
-console.log(partOne('./puzzleInput.txt'));
+if (calibrate('./examplePart1.txt', 142)) {
+  console.log('Proceeding to part 1');
+  console.log('RESULT: ' + partOne('./puzzleInput.txt'));
+} else {
+  console.log('Calibration failed, aborting part 1');
+}
+
